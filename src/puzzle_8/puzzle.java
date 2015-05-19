@@ -19,7 +19,11 @@ public class puzzle {
         this.Matriz = Matriz;
         this.numero = numero;
     }
-
+    
+    public puzzle(puzzle M){
+        this.Matriz = M.getMatriz();
+        this.numero = M.getNumero();
+    }
     puzzle() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
