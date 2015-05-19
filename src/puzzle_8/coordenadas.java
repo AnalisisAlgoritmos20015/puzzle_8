@@ -17,6 +17,10 @@ public class coordenadas {
         this.i = i;
         this.j = j;
     }
+    public coordenadas(coordenadas c) {
+        this.i = c.getI();
+        this.j = c.getJ();
+    }
 
     public int getI() {
         return i;
