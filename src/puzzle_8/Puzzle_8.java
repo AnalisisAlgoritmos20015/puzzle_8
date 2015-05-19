@@ -70,6 +70,9 @@ public class Puzzle_8 {
         int [][] M1 = new int[3][3];
         int [][] M2 = new int[3][3];
         
+        
+        //System.out.print();
+        
         /*GENERAMOS LOS PUZZLES INICIAL Y FINAL*/
         GenerarMatriz(M1,3);
         GenerarMatrizAleatoria(M2,3);
