@@ -39,7 +39,14 @@ public class puzzle {
     public void setNumero(int numero) {
         this.numero = numero;
     }
-
+    
+    public void setPos(int e, int i,int j){
+        Matriz[i][j] = e;
+    }
+    
+    public int getPos(int i,int j){
+        return Matriz[i][j];
+    }
     @Override
     public String toString() {
         String matriz = "";
@@ -73,19 +80,5 @@ public class puzzle {
         return true;
     }
     
-    public void movidaSiguiente(){
-        int posi,posj;
-        for(int i=0;i<3;i++){
-            for(int j=0;j<3;j++){
-                if(Matriz[i][j] == 0){
-                    posi = i;
-                    posj = j;
-                    break;
-                }
-            }
-        }
-        
-            
-    }
     
 }
