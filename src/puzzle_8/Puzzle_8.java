@@ -69,7 +69,7 @@ public class Puzzle_8 {
         // TODO code application logic here
         int [][] M1 = new int[3][3];
         int [][] M2 = new int[3][3];
-        
+        int cont=0;
         
         //System.out.print();
         
@@ -80,8 +80,20 @@ public class Puzzle_8 {
         /*DECLARAMOS LAS CLASES PUZZLE PARA CADA UNO*/
         puzzle tabla_final = new puzzle(M1,3);
         puzzle tabla_inicial = new puzzle(M2,3);
-        //System.out.print(tabla_inicial.toString());
+        //IMPRIMIOS LAS TABLAS
         
-    }
-    
+        //System.out.println(tabla_final.toString());
+        //System.out.println(tabla_inicial.toString());
+        
+        //CREAMOS UN ARRAYLIST PARA LAS ITARACIONES
+        ArrayList<fBruta> game = new ArrayList<fBruta>(); // VARIABLE GAME YA QUE ESTO ES UN JUEGO
+        while(cont < 20 || tabla_final.equals(tabla_inicial)){
+            fBruta GN = new fBruta(tabla_inicial); // GN ES POR g(n)
+            GN.BuscarDireccion();
+            //System.out.println(GN.toString());
+            game.add(GN);
+            tabla_inicial = new puzzle(GN.getFin());
+            cont++;
+        }     
+    }    
 }
