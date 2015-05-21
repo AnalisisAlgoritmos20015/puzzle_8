@@ -94,37 +94,55 @@ public class fBruta {
     public void BuscarDireccion(){
         Random  rnd = new Random();
         coordenadas xy = new coordenadas(BuscarCoordenada());
+        fin= new puzzle(ini); 
         if(xy.getI()%2 == 0 && xy.getJ()%2 == 0){ // EN EL CASO QUE ESTE EN LAS ESQUINAS
             //EN CADA UNA DE LAS SIGUINTES IF SE PUEDEN TOMAR DOS CAMINOS
             if(xy.getI() == 0 && xy.getJ() == 0){ // ESQUINA SUPERIOR IZQUIERDA
                 // BUSCAMOS EL G(N) POR LA ESQUINA SUPERIOR IZQUIERDA
                 if((int)(rnd.nextDouble() * 2 + 1) == 1){ // ABAJO
+                    fin.setPos(fin.getPos(1, 0), 0, 0);
+                    fin.setPos(0, 1, 0);               // mover la posicion vacía del puzle del lugar 0,0 al lugar 1,0
                 }
                 else{ // DERECHA
+                    fin.setPos(fin.getPos(0, 1), 0, 0);
+                    fin.setPos(0, 0, 1);
                 }
             }
             else {
                 if(xy.getI() == 2 && xy.getJ() == 0){ // ESQUINA INFERIOR IZQUIERDA
                     // BUSCAMOS EL G(N) POR LA ESQUINA INFERIOR IZQUIERDA
                     if((int)(rnd.nextDouble() * 2 + 1) == 1){ // ARRIBA
+                    fin.setPos(fin.getPos(1,0), 2, 0);
+                    fin.setPos(0, 2, 0);
                     }
                     else{ // DERECHA
+                    fin.setPos(fin.getPos(2,1), 2, 0);
+                    fin.setPos(0, 2, 1);
+ 
                     }
                 }
                 else {
                     if(xy.getI() == 0 && xy.getJ() == 2){ // ESQUINA SUPERIOR DERECHA
                         // BUSCAMOS EL G(N) POR LA ESQUINA SUPERIOR DERECHA
                         if((int)(rnd.nextDouble() * 2 + 1) == 1){ // ABAJO
+                        fin.setPos(fin.getPos(1,2), 0, 2);
+                        fin.setPos(0, 1, 2);
                         }
                         else{ // IZQUIERDA
+                        fin.setPos(fin.getPos(0,1), 0, 2);
+                        fin.setPos(0, 0, 1);
                         }
                     }
                     else{
                         if(xy.getI() == 2 && xy.getJ() == 2){ // ESQUINA INFERIOR DERECHA
                             // BUSCAMOS EL G(N) POR LA ESQUINA INFERIOR DERECHA
                             if((int)(rnd.nextDouble() * 2 + 1) == 1){ // ARRIBA
+                                fin.setPos(fin.getPos(1,2), 2, 2);
+                                fin.setPos(0, 1, 2);
                             }
                             else{ // IZQUIERDA
+                                fin.setPos(fin.getPos(2,1), 2, 2);
+                                fin.setPos(0, 2, 1);  
                             }
                         }
                     }
@@ -137,11 +155,17 @@ public class fBruta {
                 if(xy.getI() == 0 && xy.getJ() == 1){ //ARRIBA
                     // BUSCAMOS EL G(N) POR ARRIBA
                     if((int)(rnd.nextDouble() * 3 + 1) == 1){ //IZQUIERDA
+                        fin.setPos(fin.getPos(0,0), 0, 1);
+                        fin.setPos(0, 0, 0);  
                     }
                     else{
                         if((int)(rnd.nextDouble() * 3 + 1) == 2){ // DERECHA
+                        fin.setPos(fin.getPos(0,2), 0, 1);
+                        fin.setPos(0, 0, 2);  
                         }
                         else{ //ABAJO
+                        fin.setPos(fin.getPos(1,1), 0, 1);
+                        fin.setPos(0, 1, 1);  
                         }
                     }
                 }
@@ -149,11 +173,17 @@ public class fBruta {
                     if(xy.getI() == 2 && xy.getJ() == 1){ // ABAJO
                     // BUSCAMOS EL G(N) POR ABAJO
                         if((int)(rnd.nextDouble() * 3 + 1) == 1){ //IZQUIERDA
+                        fin.setPos(fin.getPos(2,0), 2, 1);
+                        fin.setPos(0, 2, 0); 
                         }
                         else{
                             if((int)(rnd.nextDouble() * 3 + 1) == 2){ // DERECHA
+                        fin.setPos(fin.getPos(2,2), 2, 1);
+                        fin.setPos(0, 2, 2); 
                             }
                             else{ //ARRIBA
+                        fin.setPos(fin.getPos(1,1), 2, 1);
+                        fin.setPos(0, 1, 1); 
                             }
                         }
                     }
@@ -161,11 +191,17 @@ public class fBruta {
                         if(xy.getI() == 1 && xy.getJ() == 0){ //IZQUIERDA
                             // BUSCAMOS EL G(N) POR IZQUIERDA
                             if((int)(rnd.nextDouble() * 3 + 1) == 1){ //ARRIBA
+                                fin.setPos(fin.getPos(0,0), 1, 0);
+                                fin.setPos(0, 0, 0); 
                             }
                             else{
                                 if((int)(rnd.nextDouble() * 3 + 1) == 2){ // ABAJO
+                                fin.setPos(fin.getPos(2,0), 1, 0);
+                                fin.setPos(0, 2, 0); 
                                 }
                                 else{ // DERECHA
+                                fin.setPos(fin.getPos(1,1), 1, 0);
+                                fin.setPos(0, 1, 1); 
                                 }
                             }   
                         }
@@ -173,11 +209,17 @@ public class fBruta {
                             if(xy.getI() == 1 && xy.getJ() == 2){ // DERECHA
                                 // BUSCAMOS EL G(N) POR DERECHA
                                 if((int)(rnd.nextDouble() * 3 + 1) == 1){ //ARRIBA
+                                fin.setPos(fin.getPos(0,2), 1, 2);
+                                fin.setPos(0, 0, 2); 
                                 }
                                 else{
                                     if((int)(rnd.nextDouble() * 3 + 1) == 2){ // ABAJO
+                                    fin.setPos(fin.getPos(2,2), 1, 2);
+                                    fin.setPos(0, 2, 2);
                                     }
                                     else{ // IZQUIERDA
+                                    fin.setPos(fin.getPos(1,1), 1, 2);
+                                    fin.setPos(0, 1, 1);
                                     }
                                 }  
                             }
@@ -188,14 +230,22 @@ public class fBruta {
             else{ // EN EL CASO QUE ESTE EN EL CENTRO
                 //EN ESTE CASO EXISTEN CUATRO CAMINOS DIFERENTES
                 if((int)(rnd.nextDouble() * 4 + 1) == 1){ // ARRIBA
+                    fin.setPos(fin.getPos(0,1), 1, 1);
+                    fin.setPos(0, 0, 1);
                 }
                 else{
                     if((int)(rnd.nextDouble() * 4 + 1) == 2){ // ABAJO
+                    fin.setPos(fin.getPos(2,1), 1, 1);
+                    fin.setPos(0,2,1);
                     }
                     else{
                         if((int)(rnd.nextDouble() * 4 + 1) == 3){ // IZQUIERDA
+                        fin.setPos(fin.getPos(1,0), 1, 1);
+                        fin.setPos(0,1,0);
                         }
                         else{ // DERECHA
+                        fin.setPos(fin.getPos(1,2), 1, 1);
+                        fin.setPos(0,1,2);
                         }
                     }
                 }
