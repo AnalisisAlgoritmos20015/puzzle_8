@@ -47,7 +47,8 @@ public class fBruta {
 
     @Override
     public String toString() {
-        return "fBruta{" + "ini=" + ini + ", fin=" + fin + ", direccion=" + direccion + '}';
+        //return "fBruta{" + "ini=" + ini + ", fin=" + fin + ", direccion=" + direccion + '}';
+        return "direccion: "+direccion;
     }
 
     @Override
@@ -94,7 +95,7 @@ public class fBruta {
     public void BuscarDireccion(){
         Random  rnd = new Random();
         coordenadas xy = new coordenadas(BuscarCoordenada());
-        fin= new puzzle(ini); 
+        fin= new puzzle(ini); //INICIAMOS EL PUZZLE FINAL CON EL INICIAL PARA PODER MANEJARLO
         if(xy.getI()%2 == 0 && xy.getJ()%2 == 0){ // EN EL CASO QUE ESTE EN LAS ESQUINAS
             //EN CADA UNA DE LAS SIGUINTES IF SE PUEDEN TOMAR DOS CAMINOS
             if(xy.getI() == 0 && xy.getJ() == 0){ // ESQUINA SUPERIOR IZQUIERDA
@@ -102,22 +103,26 @@ public class fBruta {
                 if((int)(rnd.nextDouble() * 2 + 1) == 1){ // ABAJO
                     fin.setPos(fin.getPos(1, 0), 0, 0);
                     fin.setPos(0, 1, 0);               // mover la posicion vacía del puzle del lugar 0,0 al lugar 1,0
+                    direccion = "abajo";
                 }
                 else{ // DERECHA
                     fin.setPos(fin.getPos(0, 1), 0, 0);
                     fin.setPos(0, 0, 1);
+                    direccion = "derecha";
                 }
             }
             else {
                 if(xy.getI() == 2 && xy.getJ() == 0){ // ESQUINA INFERIOR IZQUIERDA
                     // BUSCAMOS EL G(N) POR LA ESQUINA INFERIOR IZQUIERDA
                     if((int)(rnd.nextDouble() * 2 + 1) == 1){ // ARRIBA
-                    fin.setPos(fin.getPos(1,0), 2, 0);
-                    fin.setPos(0, 2, 0);
+                        fin.setPos(fin.getPos(1,0), 2, 0);
+                        fin.setPos(0, 2, 0);
+                        direccion = "arriba";
                     }
                     else{ // DERECHA
-                    fin.setPos(fin.getPos(2,1), 2, 0);
-                    fin.setPos(0, 2, 1);
+                        fin.setPos(fin.getPos(2,1), 2, 0);
+                        fin.setPos(0, 2, 1);
+                        direccion = "derecha";
  
                     }
                 }
@@ -125,12 +130,14 @@ public class fBruta {
                     if(xy.getI() == 0 && xy.getJ() == 2){ // ESQUINA SUPERIOR DERECHA
                         // BUSCAMOS EL G(N) POR LA ESQUINA SUPERIOR DERECHA
                         if((int)(rnd.nextDouble() * 2 + 1) == 1){ // ABAJO
-                        fin.setPos(fin.getPos(1,2), 0, 2);
-                        fin.setPos(0, 1, 2);
+                            fin.setPos(fin.getPos(1,2), 0, 2);
+                            fin.setPos(0, 1, 2);
+                            direccion = "abajo";
                         }
                         else{ // IZQUIERDA
-                        fin.setPos(fin.getPos(0,1), 0, 2);
-                        fin.setPos(0, 0, 1);
+                            fin.setPos(fin.getPos(0,1), 0, 2);
+                            fin.setPos(0, 0, 1);
+                            direccion = "izquierda";
                         }
                     }
                     else{
@@ -139,10 +146,12 @@ public class fBruta {
                             if((int)(rnd.nextDouble() * 2 + 1) == 1){ // ARRIBA
                                 fin.setPos(fin.getPos(1,2), 2, 2);
                                 fin.setPos(0, 1, 2);
+                                direccion = "arriba";
                             }
                             else{ // IZQUIERDA
                                 fin.setPos(fin.getPos(2,1), 2, 2);
-                                fin.setPos(0, 2, 1);  
+                                fin.setPos(0, 2, 1);
+                                direccion = "izquierda";
                             }
                         }
                     }
@@ -156,16 +165,19 @@ public class fBruta {
                     // BUSCAMOS EL G(N) POR ARRIBA
                     if((int)(rnd.nextDouble() * 3 + 1) == 1){ //IZQUIERDA
                         fin.setPos(fin.getPos(0,0), 0, 1);
-                        fin.setPos(0, 0, 0);  
+                        fin.setPos(0, 0, 0); 
+                        direccion = "izquierda";
                     }
                     else{
                         if((int)(rnd.nextDouble() * 3 + 1) == 2){ // DERECHA
-                        fin.setPos(fin.getPos(0,2), 0, 1);
-                        fin.setPos(0, 0, 2);  
+                            fin.setPos(fin.getPos(0,2), 0, 1);
+                            fin.setPos(0, 0, 2); 
+                            direccion = "derecha";
                         }
                         else{ //ABAJO
-                        fin.setPos(fin.getPos(1,1), 0, 1);
-                        fin.setPos(0, 1, 1);  
+                            fin.setPos(fin.getPos(1,1), 0, 1);
+                            fin.setPos(0, 1, 1);
+                            direccion = "abajo";
                         }
                     }
                 }
@@ -173,17 +185,20 @@ public class fBruta {
                     if(xy.getI() == 2 && xy.getJ() == 1){ // ABAJO
                     // BUSCAMOS EL G(N) POR ABAJO
                         if((int)(rnd.nextDouble() * 3 + 1) == 1){ //IZQUIERDA
-                        fin.setPos(fin.getPos(2,0), 2, 1);
-                        fin.setPos(0, 2, 0); 
+                            fin.setPos(fin.getPos(2,0), 2, 1);
+                            fin.setPos(0, 2, 0);
+                            direccion = "izquierda";
                         }
                         else{
                             if((int)(rnd.nextDouble() * 3 + 1) == 2){ // DERECHA
-                        fin.setPos(fin.getPos(2,2), 2, 1);
-                        fin.setPos(0, 2, 2); 
+                                fin.setPos(fin.getPos(2,2), 2, 1);
+                                fin.setPos(0, 2, 2);
+                                direccion = "derecha";
                             }
                             else{ //ARRIBA
-                        fin.setPos(fin.getPos(1,1), 2, 1);
-                        fin.setPos(0, 1, 1); 
+                                fin.setPos(fin.getPos(1,1), 2, 1);
+                                fin.setPos(0, 1, 1);
+                                direccion = "arriba";
                             }
                         }
                     }
@@ -192,16 +207,19 @@ public class fBruta {
                             // BUSCAMOS EL G(N) POR IZQUIERDA
                             if((int)(rnd.nextDouble() * 3 + 1) == 1){ //ARRIBA
                                 fin.setPos(fin.getPos(0,0), 1, 0);
-                                fin.setPos(0, 0, 0); 
+                                fin.setPos(0, 0, 0);
+                                direccion = "arriba";
                             }
                             else{
                                 if((int)(rnd.nextDouble() * 3 + 1) == 2){ // ABAJO
-                                fin.setPos(fin.getPos(2,0), 1, 0);
-                                fin.setPos(0, 2, 0); 
+                                    fin.setPos(fin.getPos(2,0), 1, 0);
+                                    fin.setPos(0, 2, 0);
+                                    direccion = "abajo";
                                 }
                                 else{ // DERECHA
-                                fin.setPos(fin.getPos(1,1), 1, 0);
-                                fin.setPos(0, 1, 1); 
+                                    fin.setPos(fin.getPos(1,1), 1, 0);
+                                    fin.setPos(0, 1, 1); 
+                                    direccion = "derecha";
                                 }
                             }   
                         }
@@ -209,17 +227,20 @@ public class fBruta {
                             if(xy.getI() == 1 && xy.getJ() == 2){ // DERECHA
                                 // BUSCAMOS EL G(N) POR DERECHA
                                 if((int)(rnd.nextDouble() * 3 + 1) == 1){ //ARRIBA
-                                fin.setPos(fin.getPos(0,2), 1, 2);
-                                fin.setPos(0, 0, 2); 
+                                    fin.setPos(fin.getPos(0,2), 1, 2);
+                                    fin.setPos(0, 0, 2);
+                                    direccion = "arriba";
                                 }
                                 else{
                                     if((int)(rnd.nextDouble() * 3 + 1) == 2){ // ABAJO
-                                    fin.setPos(fin.getPos(2,2), 1, 2);
-                                    fin.setPos(0, 2, 2);
+                                        fin.setPos(fin.getPos(2,2), 1, 2);
+                                        fin.setPos(0, 2, 2);
+                                        direccion = "abajo";
                                     }
                                     else{ // IZQUIERDA
-                                    fin.setPos(fin.getPos(1,1), 1, 2);
-                                    fin.setPos(0, 1, 1);
+                                        fin.setPos(fin.getPos(1,1), 1, 2);
+                                        fin.setPos(0, 1, 1);
+                                        direccion = "izquierda";
                                     }
                                 }  
                             }
@@ -232,20 +253,24 @@ public class fBruta {
                 if((int)(rnd.nextDouble() * 4 + 1) == 1){ // ARRIBA
                     fin.setPos(fin.getPos(0,1), 1, 1);
                     fin.setPos(0, 0, 1);
+                    direccion = "arriba";
                 }
                 else{
                     if((int)(rnd.nextDouble() * 4 + 1) == 2){ // ABAJO
-                    fin.setPos(fin.getPos(2,1), 1, 1);
-                    fin.setPos(0,2,1);
+                        fin.setPos(fin.getPos(2,1), 1, 1);
+                        fin.setPos(0,2,1);
+                        direccion = "abajo";
                     }
                     else{
                         if((int)(rnd.nextDouble() * 4 + 1) == 3){ // IZQUIERDA
-                        fin.setPos(fin.getPos(1,0), 1, 1);
-                        fin.setPos(0,1,0);
+                            fin.setPos(fin.getPos(1,0), 1, 1);
+                            fin.setPos(0,1,0);
+                            direccion = "izquierda";
                         }
                         else{ // DERECHA
-                        fin.setPos(fin.getPos(1,2), 1, 1);
-                        fin.setPos(0,1,2);
+                            fin.setPos(fin.getPos(1,2), 1, 1);
+                            fin.setPos(0,1,2);
+                            direccion = "derecha";
                         }
                     }
                 }
