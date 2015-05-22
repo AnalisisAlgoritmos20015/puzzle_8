@@ -60,7 +60,7 @@ public class puzzle {
             }
             matriz = matriz+"\n";
         }
-        return "puzzle{\n" + "Matriz \n" + matriz + " complejidad=" + numero + '}';
+        return "Matriz \n" + matriz + " complejidad=" + numero;
     }
 
     @Override

@@ -11,6 +11,7 @@ import java.util.Random;
 /**
  *
  * @author Oscar Muñoz Bernales
+ *         Ernesto Rojas
  */
 public class fBruta {
     private puzzle ini; // Matriz INICIAL
@@ -19,23 +20,27 @@ public class fBruta {
 
     public fBruta(puzzle inicial) {
         this.ini = inicial;
-        //this.fin = inicial;
+    }
+    
+    public fBruta(fBruta B){
+        this.ini = B.getIni();
+        this.fin = B.getFin();
     }
 
     public puzzle getIni() {
         return ini;
     }
 
-    public void setIni(puzzle ini) {
-        this.ini = ini;
+    public void setIni(puzzle inicial) {
+        this.ini = inicial;
     }
 
     public puzzle getFin() {
         return fin;
     }
 
-    public void setFin(puzzle fin) {
-        this.fin = fin;
+    public void setFin(puzzle fina) {
+        this.fin = fina;
     }
 
     public String getDireccion() {
@@ -50,17 +55,17 @@ public class fBruta {
     public String toString() {
         String m1="";
         String m2="";
-        String m="";
+        String m="inicial final\n";
         for(int i=0;i<3;i++){
             for(int j=0;j<3;j++){
-                m1 = m1+ini.getPos(i,j)+"-";
-                m2 = m2+fin.getPos(i,j)+"-";
+                m1 = m1+ini.getPos(i,j)+" ";
+                m2 = m2+fin.getPos(i,j)+" ";
             }
             m = m+m1+"\t"+m2+"\n";
             m1="";
             m2="";
         }
-        //return "fBruta{"+m+"direccion=" + direccion + "}";
+        
         return "matrices: (Direccion: "+direccion+")\n"+m+"\n";
     }
 
@@ -108,21 +113,44 @@ public class fBruta {
     public void BuscarDireccion(){
         Random  rnd = new Random();
         coordenadas xy = new coordenadas(BuscarCoordenada());
+        int [][]m1 = new int[3][3];
         //System.out.println("corrdenadas"+xy.toString());
-        fin= new puzzle(ini); //INICIAMOS EL PUZZLE FINAL CON EL INICIAL PARA PODER MANEJARLO
-        if((xy.getI() == 0 && xy.getJ() == 0) || (xy.getI() == 0 && xy.getJ() == 2) || (xy.getI() == 2 && xy.getJ() == 0) || (xy.getI() == 2 && xy.getJ() == 2)){ // EN EL CASO QUE ESTE EN LAS ESQUINAS
+        this.fin = new puzzle(m1,3); //INICIAMOS EL PUZZLE FINAL CON EL INICIAL PARA PODER MANEJARLO
+        
+        //{[0][0],[0][1],[0][2]} primera fila
+        //{[1][0],[1][1],[1][2]} segunda fila
+        //{[2][0],[2][1],[2][2]} tercera fila
+
+        //PRIMERA FILA
+        fin.setPos(ini.getPos(0, 0), 0, 0);
+        fin.setPos(ini.getPos(0, 1), 0, 1);
+        fin.setPos(ini.getPos(0, 2), 0, 2);
+
+        //SEGUNDA FILA
+        fin.setPos(ini.getPos(1, 0), 1, 0);
+        fin.setPos(ini.getPos(1, 1), 1, 1);
+        fin.setPos(ini.getPos(1, 2), 1, 2);
+
+        //TERCERA FILA
+        fin.setPos(ini.getPos(2, 0), 2, 0);
+        fin.setPos(ini.getPos(2, 1), 2, 1);
+        fin.setPos(ini.getPos(2, 2), 2, 2);
+        
+        
+        
+        if(xy.getI()%2 == 0 && xy.getJ()%2 == 0){ // EN EL CASO QUE ESTE EN LAS ESQUINAS
             //EN CADA UNA DE LAS SIGUINTES IF SE PUEDEN TOMAR DOS CAMINOS
             if(xy.getI() == 0 && xy.getJ() == 0){ // ESQUINA SUPERIOR IZQUIERDA
                 // BUSCAMOS EL G(N) POR LA ESQUINA SUPERIOR IZQUIERDA
                 if((int)(rnd.nextDouble() * 2 + 1) == 1){ // ABAJO
-                    fin.setPos(fin.getPos(1, 0), 0, 0);
-                    fin.setPos(0, 1, 0);               // mover la posicion vacía del puzle del lugar 0,0 al lugar 1,0
-                    direccion = "00abajo";
+                    fin.setPos(ini.getPos(1, 0), 0, 0);
+                    fin.setPos(0, 1, 0); // mover la posicion vacía del puzle del lugar 0,0 al lugar 1,0
+                    direccion = "abajo";
                 }
                 else{ // DERECHA
-                    fin.setPos(fin.getPos(0, 1), 0, 0);
+                    fin.setPos(ini.getPos(0, 1), 0, 0);
                     fin.setPos(0, 0, 1);
-                    direccion = "00derecha";
+                    direccion = "derecha";
                 }
             }
             else {
@@ -131,12 +159,12 @@ public class fBruta {
                     if((int)(rnd.nextDouble() * 2 + 1) == 1){ // ARRIBA
                         fin.setPos(fin.getPos(1,0), 2, 0);
                         fin.setPos(0, 2, 0);
-                        direccion = "20arriba";
+                        direccion = "arriba";
                     }
                     else{ // DERECHA
                         fin.setPos(fin.getPos(2,1), 2, 0);
                         fin.setPos(0, 2, 1);
-                        direccion = "20derecha";
+                        direccion = "derecha";
  
                     }
                 }
@@ -146,12 +174,12 @@ public class fBruta {
                         if((int)(rnd.nextDouble() * 2 + 1) == 1){ // ABAJO
                             fin.setPos(fin.getPos(1,2), 0, 2);
                             fin.setPos(0, 1, 2);
-                            direccion = "02abajo";
+                            direccion = "abajo";
                         }
                         else{ // IZQUIERDA
                             fin.setPos(fin.getPos(0,1), 0, 2);
                             fin.setPos(0, 0, 1);
-                            direccion = "02izquierda";
+                            direccion = "izquierda";
                         }
                     }
                     else{
@@ -160,12 +188,12 @@ public class fBruta {
                             if((int)(rnd.nextDouble() * 2 + 1) == 1){ // ARRIBA
                                 fin.setPos(fin.getPos(1,2), 2, 2);
                                 fin.setPos(0, 1, 2);
-                                direccion = "22arriba";
+                                direccion = "arriba";
                             }
                             else{ // IZQUIERDA
                                 fin.setPos(fin.getPos(2,1), 2, 2);
                                 fin.setPos(0, 2, 1);
-                                direccion = "22izquierda";
+                                direccion = "izquierda";
                             }
                         }
                     }

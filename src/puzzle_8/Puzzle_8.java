@@ -87,9 +87,11 @@ public class Puzzle_8 {
         
         //CREAMOS UN ARRAYLIST PARA LAS ITARACIONES
         ArrayList<fBruta> game = new ArrayList<fBruta>(); // VARIABLE GAME YA QUE ESTO ES UN JUEGO
-        while(cont < 2 || tabla_final.equals(tabla_inicial)){
+        while(cont < 20 || tabla_final.equals(tabla_inicial)){
             fBruta GN = new fBruta(tabla_inicial); // GN ES POR g(n)
+            //System.out.println("hola: "+GN.getIni().toString());
             GN.BuscarDireccion();
+            GN.setIni(tabla_inicial);
             System.out.println(GN.toString());
             //game.add(GN);
             tabla_inicial = new puzzle(GN.getFin());
